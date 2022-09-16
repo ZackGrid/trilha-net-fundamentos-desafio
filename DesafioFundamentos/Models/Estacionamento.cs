@@ -52,10 +52,11 @@ namespace DesafioFundamentos.Models
                 }
                 else
                 {
-                    Console.WriteLine("Desculpe, esse veículo não está estacionado aqui. Confira se digitou a placa corretamente");
+                    Console.WriteLine("Desculpe, esse veículo não está estacionado aqui." + 
+                    "Confira se digitou a placa corretamente.");
                 }
             } else {
-                Console.WriteLine("Não há veiculos cadastrados");
+                Console.WriteLine("Não há veiculos cadastrados.");
             }
             
             
@@ -67,8 +68,9 @@ namespace DesafioFundamentos.Models
             if (veiculos.Any())
             {
                 Console.WriteLine("Os veículos estacionados são:");
-                // TODO: Realizar um laço de repetição, exibindo os veículos estacionados
-                // *IMPLEMENTE AQUI*
+                for (int i = 0; i < veiculos.Count;i++){
+                    Console.WriteLine(veiculos[i]);
+                }
             }
             else
             {
