@@ -17,38 +17,48 @@ namespace DesafioFundamentos.Models
             // TODO: Pedir para o usuário digitar uma placa (ReadLine) e adicionar na lista "veiculos"
             // *IMPLEMENTE AQUI*
             Console.WriteLine("Digite a placa do veículo para estacionar:");
-            veiculos.Add(Console.ReadLine());
-            Console.WriteLine(veiculos[0]);
+            string tempVeiculo = Console.ReadLine();
+            veiculos.Add(tempVeiculo.ToUpper());
         }
 
         public void RemoverVeiculo()
-        {
-            Console.WriteLine("Digite a placa do veículo para remover:");
+        {   
+            //verificar se há veiculos cadastrados primeiro
+            if(veiculos.Count > 0)
+            {   
+                //Listar placas cadastradas para facilitar caso usuario não lembre na hora de remover
+                Console.WriteLine("Veiculos cadastrados: ");
+                for (int i = 0; i < veiculos.Count;i++){
+                    Console.WriteLine(veiculos[i]);
+                }
+                Console.WriteLine("Digite a placa do veículo para remover:");
 
-            // Pedir para o usuário digitar a placa e armazenar na variável placa
-            // *IMPLEMENTE AQUI*
-            string placa = "";
+                // Pedir para o usuário digitar a placa e armazenar na variável placa
+                string tempPlaca = Console.ReadLine();
+                string placa = tempPlaca.ToUpper();
 
-            // Verifica se o veículo existe
-            if (veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
-            {
-                Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado:");
+                // Verifica se o veículo existe, retorna valor total, e remove veiculo
+                if (veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
+                {
+                    Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado:");
 
-                // TODO: Pedir para o usuário digitar a quantidade de horas que o veículo permaneceu estacionado,
-                // TODO: Realizar o seguinte cálculo: "precoInicial + precoPorHora * horas" para a variável valorTotal                
-                // *IMPLEMENTE AQUI*
-                int horas = 0;
-                decimal valorTotal = 0; 
+                    int horas = 0;
+                    horas = Convert.ToInt32(Console.ReadLine());
+                    decimal valorTotal = 0;
+                    valorTotal = (horas * precoPorHora) + precoInicial;
 
-                // TODO: Remover a placa digitada da lista de veículos
-                // *IMPLEMENTE AQUI*
-
-                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
+                    veiculos.Remove(placa);
+                    Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
+                }
+                else
+                {
+                    Console.WriteLine("Desculpe, esse veículo não está estacionado aqui. Confira se digitou a placa corretamente");
+                }
+            } else {
+                Console.WriteLine("Não há veiculos cadastrados");
             }
-            else
-            {
-                Console.WriteLine("Desculpe, esse veículo não está estacionado aqui. Confira se digitou a placa corretamente");
-            }
+            
+            
         }
 
         public void ListarVeiculos()
